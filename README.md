@@ -137,6 +137,57 @@ Potential extensions include:
 
 - Rolling Diversification by Time Series
 
+# INSTRUCTIONS
+
+# **Command to Activate the Virtual Environment (PowerShell)**
+
+From your project root folder run:
+
+.\venv\Scripts\Activate.ps1
+
+After running it, your prompt should change to:
+
+"(venv) PS C:..."
+
+## Required Python Packages
+
+### Core data libraries
+
+pandas
+
+numpy
+
+### Financial data
+
+yfinance
+
+### Machine learning
+
+scikit-learn
+
+### Scientific computing
+
+scipy
+
+Visualization
+
+matplotlib
+
+seaborn
+
+plotly
+
+### Interactive dashboard
+
+streamlit
+
+## One Command to Install Everything
+
+After activating your virtual environment, run:
+
+python -m pip install pandas numpy yfinance scikit-learn scipy matplotlib seaborn plotly streamlit
+
+This installs everything your project uses.
 
 ### Running the Analysis Pipeline
 
@@ -166,7 +217,7 @@ All outputs will be saved to the results/ directory.
 
 ### Launch the Interactive Portfolio Explorer
 
-Start the interactive dashboard:
+## Start the interactive dashboard:
 
 streamlit run src\portfolio_explorer_app.py
 
@@ -180,7 +231,7 @@ This opens a browser application where you can:
 
 - compare multiple portfolios
 
-- Generate a Portfolio Comparison Report
+### Generate a Portfolio Comparison Report
 
 To compare specific portfolios against the benchmark strategies (HRP and Cluster):
 
