@@ -136,3 +136,114 @@ Potential extensions include:
 - Heirarchical Risk Parity Portfolio
 
 - Rolling Diversification by Time Series
+
+
+### Running the Analysis Pipeline
+
+Run the full research pipeline from the project root directory:
+
+python src\run_pipeline.py
+
+This will automatically execute the following steps:
+
+- Download financial data
+
+- Clean and preprocess time-series datasets
+
+- Perform correlation and clustering analysis
+
+- Generate portfolio construction strategies
+
+- Run portfolio simulations
+
+- Generate efficient frontier visualizations
+
+- Produce performance charts and metrics
+
+- Run Monte Carlo simulations
+
+All outputs will be saved to the results/ directory.
+
+### Launch the Interactive Portfolio Explorer
+
+Start the interactive dashboard:
+
+streamlit run src\portfolio_explorer_app.py
+
+This opens a browser application where you can:
+
+- explore the efficient frontier
+
+- inspect portfolio allocations
+
+- filter portfolios by Sharpe ratio or volatility
+
+- compare multiple portfolios
+
+- Generate a Portfolio Comparison Report
+
+To compare specific portfolios against the benchmark strategies (HRP and Cluster):
+
+python src\portfolio_comparison_tool.py
+
+You will then be prompted to enter portfolio IDs one at a time.
+
+Example interaction:
+
+Portfolio ID: 14
+Portfolio ID: 88
+Portfolio ID: 420
+Portfolio ID:
+
+Press Enter on a blank line to run the analysis.
+
+The script will generate:
+
+results\portfolio_growth_comparison_custom.png
+
+- showing historical growth comparisons between the selected portfolios and the benchmark strategies.
+
+### Generate an Interactive Efficient Frontier
+
+To explore the efficient frontier in a browser:
+
+python src\plot_efficient_frontier_interactive.py
+
+This creates an interactive HTML file:
+
+results\efficient_frontier_interactive.html
+
+Open this file in your browser to interact with the frontier visualization.
+
+### Optional: Run Individual Analysis Scripts
+
+If needed, individual scripts can be run directly:
+
+## Download market data:
+
+python src\data_collection.py
+
+## Preprocess historical price data:
+
+python src\preprocessing.py
+
+## Run clustering analysis:
+
+python src\cluster_analysis.py
+
+## Generate efficient frontier simulation:
+
+python src\efficient_frontier_simulation.py
+
+## Run Monte Carlo simulation:
+
+python src\monte_carlo_simulation.py
+Project Structure
+src/
+│
+├── run_pipeline.py
+├── portfolio_explorer_app.py
+├── portfolio_comparison_tool.py
+├── plot_efficient_frontier_interactive.py
+
+Pipeline scripts generate reproducible research outputs, while the explorer and comparison tools provide interactive analysis capabilities.
