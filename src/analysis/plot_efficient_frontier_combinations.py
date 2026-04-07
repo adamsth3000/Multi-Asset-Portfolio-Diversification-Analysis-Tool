@@ -1,0 +1,77 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+SIM_PATH = "results/combination_portfolio_simulations.csv"
+
+PORTFOLIOS = {
+    "HRP_Combination": "results/hrp_combination_portfolio.csv"
+}
+
+RETURNS_PATH = "data/processed/etf_returns.csv"
+
+
+def load_returns():
+    return pd.read_csv(
+        RETURNS_PATH,
+        index_col=0,
+        parse_dates=True
+    )
+
+
+def portfolio_stats(returns, portfolio):
+
+    weights = portfolio.set_index("ETF")["Weight"]
+
+    subset = returns[weights.index]
+
+    port_returns = subset.dot(weights)
+
+    annual_return = port_returns.mean() * 252
+    volatility = port_returns.std() * (252 ** 0.5)
+
+    return volatility, annual_return
+
+
+def main():
+
+    sims = pd.read_csv(SIM_PATH)
+    returns = load_returns()
+
+    plt.figure(figsize=(10, 6))
+
+    plt.scatter(
+        sims["Volatility"],
+        sims["AnnualReturn"],
+        c=sims["Sharpe"],
+        alpha=0.5
+    )
+
+    for name, path in PORTFOLIOS.items():
+
+        portfolio = pd.read_csv(path)
+
+        vol, ret = portfolio_stats(returns, portfolio)
+
+        plt.scatter(
+            vol,
+            ret,
+            marker="*",
+            s=200,
+            label=name
+        )
+
+    plt.xlabel("Volatility")
+    plt.ylabel("Annual Return")
+    plt.title("Combination Efficient Frontier")
+
+    plt.legend()
+
+    plt.tight_layout()
+
+    plt.savefig("results/efficient_frontier_combinations.png")
+
+    print("Combination frontier saved")
+
+
+if __name__ == "__main__":
+    main()
